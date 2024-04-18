@@ -1,0 +1,276 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    
+    font-family: 'Comfortaa', Helvetica, sans-serif;
+    font-weight: 400;
+    background-color: #f3f6fd;
+
+}
+
+.input {
+    padding: 12px 20px;
+
+    font-family: 'Comfortaa', Helvetica, sans-serif;
+    font-size: 14px;
+    line-height: 16px;
+
+    background-color: #ffffff;
+    border: 1px solid #e7ebfb;
+    border-radius: 9px;
+}
+
+.input::placeholder {
+    color: #8899a8;
+}
+
+.input:active, .input:focus {
+    outline: none;
+    border-color: #6a6afb;
+}
+
+.input_icon {
+    position: relative;
+}
+
+.input_icon .input {
+    padding-left: 48px;
+}
+
+.input_icon::before {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+
+    display: block;
+    width: 18px;
+    height: 18px;
+    transform: translateY(-50%);
+}
+
+.input_icon-comment::before {
+    content: url('../images/icons/comment.svg');
+}
+
+.button {
+    padding: 12px 30px;
+
+    font-size: 13px;
+    line-height: 15px;
+    color: #5051f9;
+
+    background-color: #edecfe;
+    border: none;
+    border-radius: 9px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: #dad9f8;
+}
+
+.app {
+    display: flex;
+}
+
+.panel {
+    min-height: 100vh;
+    padding: 30px;
+
+    background-color: #fbfaff;
+}
+
+.panel__logo {
+    margin-bottom: 50px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+}
+
+.menu__list {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+}
+
+.menu__item {
+    width: 45px;
+    height: 45px;
+
+    background-color: #ffffff;
+    border: none;
+    border-radius: 14px;
+    box-shadow: 0px 8px 14px rgba(62, 107, 224, 0.12);
+    cursor: pointer;
+}
+
+.menu__item:hover {
+    background-color: #6a6afb;
+}
+
+.menu__item:hover img {
+    filter: brightness(0) invert(1);
+}
+
+.menu__item_active {
+    background-color: #5051f9;
+}
+
+.menu__item_active img {
+    filter: brightness(0) invert(1);
+}
+
+.menu__add {
+    width: 45px;
+    height: 45px;
+
+    background: none;
+    border: 1px solid #cad5ff;
+    border-radius: 14px;
+    cursor: pointer;
+}
+
+.menu__add:hover {
+    background-color: #eff2ff;
+}
+
+.content {
+    flex-grow: 1;
+    padding: 40px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__h {
+    margin: 0;
+
+    font-size: 30px;
+    line-height: 33px;
+    color: #000000;
+}
+
+.progress {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    min-width: 235px;
+}
+
+.progress__text {
+    display: flex;
+    justify-content: space-between;
+}
+
+.progress__name {
+    font-size: 14px;
+    line-height: 16px;
+    color: #232360;
+}
+
+.progress__percent {
+    font-size: 12px;
+    line-height: 14px;
+    color: #768396;
+}
+
+.progress__bar {
+    position: relative;
+
+    width: 100%;
+    height: 5px;   
+    background-color: #e6e9ed;
+    border-radius: 4px;
+}
+
+.progress__cover-bar {
+    position: relative;
+
+    width: 50%;
+    height: 5px;   
+    background-color: #5051f9;
+    border-radius: 4px;
+}
+
+main {
+    margin-top: 30px;
+}
+
+.habbit {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+
+    background-color: #ffffff;
+    border-radius: 10px;
+}
+
+.habbit__day {
+    width: 120px;
+    padding: 18px;
+
+    font-size: 14px;
+    line-height: 18px;
+    color: #000000;
+    text-align: center;
+
+    background-color: #fbfaff;
+    border-right: 1px solid #e7ebfb;
+    border-radius: 10px 0 0 10px;
+}
+
+.habbit__comment {
+    padding: 18px 25px;
+
+    
+    font-size: 16px;
+    line-height: 18px;
+    color: #232360;
+}
+
+.habbit__delete {
+    display: block;
+    width: 28px;
+    height: 28px;
+    margin-right: 13px;
+    margin-left: auto;
+    padding: 2px;
+    
+    background: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+.habbit__delete:hover {
+    background-color: #eff2ff;
+}
+
+.habbit__form {
+    flex-grow: 1;
+    
+    display: flex;
+    justify-content: center;
+    padding: 5px 10px 5px 25px;
+    gap: 15px;
+}
+
+.habbit__form-input {
+    flex-grow: 1;
+}
+
+.habbit__form-input .input {
+    width: 100%;
+}
