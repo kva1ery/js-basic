@@ -153,7 +153,7 @@ body {
     align-items: center;
 }
 
-.header__h {
+.header__text {
     margin: 0;
 
     font-size: 30px;
@@ -197,10 +197,12 @@ body {
 .progress__cover-bar {
     position: relative;
 
-    width: 50%;
+    width: 0;
     height: 5px;   
     background-color: #5051f9;
     border-radius: 4px;
+
+    transition: all 0.5s;
 }
 
 main {

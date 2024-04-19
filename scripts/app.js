@@ -4,8 +4,18 @@ let habbits = [];
 const HABBIT_KEY = 'HABBIT_KEY';
 
 /* page */
+
 const page = {
     menu: document.querySelector('.menu__list'),
+    header: {
+        text: document.querySelector('.header__text'),
+        progressPercent: document.querySelector('.progress__percent'),
+        progressCoverBar: document.querySelector('.progress__cover-bar')
+    },
+    content: {
+        daysContainer: document.querySelector('.days'),
+        nextDay: document.querySelector('.habbit-add-day')
+    }
 }
 
 
@@ -23,13 +33,9 @@ function saveData() {
     localStorage.setItem(HABBIT_KEY, JSON.stringify(habbits));
 }
 
-
 /* render */
-function rerenderMenu(activeHabbit) {
-    if (!activeHabbit) {
-        return;
-    }
 
+function rerenderMenu(activeHabbit) {
     for (const habbit of habbits) {
         const existed = document.querySelector(`[menu-habbit-id="${habbit.id}"]`);
         if (!existed) {
@@ -56,11 +62,42 @@ function rerenderMenu(activeHabbit) {
     }
 }
 
-function rerender(activeHabbitId) {
-    const activeHabbit = habbits.find(habbit => habbit.id === activeHabbitId);
-    rerenderMenu(activeHabbit);
+function rerenderHead(activeHabbit) {
+    page.header.text.innerText = activeHabbit.name;
+    const progress = activeHabbit.days.length / activeHabbit.target > 1 
+        ? 100 
+        : activeHabbit.days.length / activeHabbit.target * 100;
+    page.header.progressPercent.innerHTML = `${progress.toFixed(0)}%`;
+    page.header.progressCoverBar.style.width = `${progress.toFixed(0)}%`;
 }
 
+function rerenderContent(activeHabbit) {
+    page.content.daysContainer.innerHTML = '';
+        for (const index in activeHabbit.days) {
+        const element = document.createElement('div');
+        element.classList.add('habbit');
+        element.innerHTML = `
+        <div class="habbit__day">День ${Number(index) +1}</div>
+        <div class="habbit__comment">${activeHabbit.days[index].comment}</div>
+        <button class="habbit__delete">
+            <img src="images/icons/delete.svg" alt="Удалить день ${Number(index) +1}">
+        </button>`;
+        page.content.daysContainer.appendChild(element);
+    }
+
+    page.content.nextDay.querySelector('.habbit__day').innerText = 'День ' + (activeHabbit.days.length + 1);
+}
+
+function rerender(activeHabbitId) {
+    const activeHabbit = habbits.find(habbit => habbit.id === activeHabbitId);
+    if (!activeHabbit) {
+        return;
+    }
+
+    rerenderMenu(activeHabbit);
+    rerenderHead(activeHabbit);
+    rerenderContent(activeHabbit);
+}
 
 /* init */
 
