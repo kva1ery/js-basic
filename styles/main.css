@@ -32,6 +32,10 @@ body {
     border-color: #6a6afb;
 }
 
+.input.error {
+    border: 1px solid #fb6a6a;
+}
+
 .input_icon {
     position: relative;
 }

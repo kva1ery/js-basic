@@ -2,6 +2,7 @@
 
 let habbits = [];
 const HABBIT_KEY = 'HABBIT_KEY';
+let globalActiveHabbitId;
 
 /* page */
 
@@ -17,7 +18,6 @@ const page = {
         nextDay: document.querySelector('.habbit-add-day')
     }
 }
-
 
 /* utils */
 
@@ -79,7 +79,7 @@ function rerenderContent(activeHabbit) {
         element.innerHTML = `
         <div class="habbit__day">День ${Number(index) +1}</div>
         <div class="habbit__comment">${activeHabbit.days[index].comment}</div>
-        <button class="habbit__delete">
+        <button class="habbit__delete" onclick="deleteDay(${index})">
             <img src="images/icons/delete.svg" alt="Удалить день ${Number(index) +1}">
         </button>`;
         page.content.daysContainer.appendChild(element);
@@ -89,14 +89,52 @@ function rerenderContent(activeHabbit) {
 }
 
 function rerender(activeHabbitId) {
+
     const activeHabbit = habbits.find(habbit => habbit.id === activeHabbitId);
     if (!activeHabbit) {
         return;
     }
+    globalActiveHabbitId = activeHabbitId;
 
     rerenderMenu(activeHabbit);
     rerenderHead(activeHabbit);
     rerenderContent(activeHabbit);
+}
+
+/* work with days */
+
+function addDay(event) {
+    event.preventDefault();
+    const form = event.target;
+    const data = new FormData(form);
+
+    const comment = data.get('comment');
+    form['comment'].classList.remove('error');
+    if(!comment.trim()) {
+        form['comment'].classList.add('error');
+        return;
+    }
+
+    const habbit = habbits.find(habbit => habbit.id === globalActiveHabbitId);
+    if (habbit) {
+        habbit.days.push({ comment });
+        rerender(globalActiveHabbitId);
+        saveData();
+    }
+
+    form['comment'].value = '';
+}
+
+function deleteDay(dayIndex) {
+    if (!dayIndex) {
+        return
+    }
+    const habbit = habbits.find(habbit => habbit.id === globalActiveHabbitId);
+    if (habbit && dayIndex < habbit.days.length) {
+        habbit.days.splice(dayIndex, 1);
+        rerender(globalActiveHabbitId);
+        saveData();
+    }
 }
 
 /* init */
